@@ -1,5 +1,5 @@
 package autobox::Array::Transform;
-$autobox::Array::Transform::VERSION = '1.000';
+$autobox::Array::Transform::VERSION = '1.001';
 use strict;
 use warnings;
 use parent qw/autobox/;
@@ -20,8 +20,11 @@ autobox::Array::Transform - Autobox methods to transform Arrays
     my $genres = $books->map_by("genre");
 
     # With sum from autobox::Core / List::AllUtils
-    my $book_order_total = sum( map { $_->price_with_tax($tax_pct) } @{$order->books} )
-    my $book_order_total = $order->books->map_by(price_with_tax => [$tax_pct])->sum;
+    my $book_order_total = sum(
+        map { $_->price_with_tax($tax_pct) } @{$order->books}
+    );
+    my $book_order_total = $order->books
+        ->map_by(price_with_tax => [$tax_pct])->sum;
 
 
     ### grep_by
@@ -63,8 +66,8 @@ autobox::Array::Transform - Autobox methods to transform Arrays
 
 =head1 DESCRIPTION
 
-Autobox high level map-style methods you can call on arrays and
-arrayrefs, e.g. map_by(), grep_by(), group_by()
+High level autobox methods you can call on arrays and arrayrefs,
+e.g. map_by(), grep_by(), group_by()
 
 
 =head2 Raison d'etre
@@ -73,12 +76,19 @@ L<Autobox::Core> is awesome, for a variety of reasons.
 
 =over 4
 
-=item It cuts down on dereferencing punctuation clutter.
+=item
 
-=item It makes map and grep transforms read in the same direction it's executed.
+It cuts down on dereferencing punctuation clutter.
 
-=item It makes it easier to write those things in a natural order. No
-need to move the cursor around a lot just to fill in the blanks.
+=item
+
+It makes map and grep transforms read in the same direction it's executed.
+
+=item
+
+It makes it easier to write those things in a natural order. No need
+to move the cursor around a lot just to fix dereferencing, order of
+operations etc.
 
 =back
 
@@ -134,9 +144,10 @@ package # hide from PAUSE
 =head2 List and Scalar Context
 
 All of the methods below are context sensitive, i.e. they return a
-list in list context and an arrayref in scalar context.
+list in list context and an arrayref in scalar context, just like
+autobox::Core.
 
-If in doubt, assume they work like C<map> and C<grep>, and convert the
+When in doubt, assume they work like C<map> and C<grep>, and convert the
 return value to references where you might have an unobvious list
 context. E.g.
 
@@ -224,7 +235,7 @@ Optionally pass in @$args in the method call. Like:
 
 Examples:
 
-    my @free_books = $books->grep_by("price_with_tax", [ $tax_pct ]);
+    my @books_to_charge_for = $books->grep_by("price_with_tax", [ $tax_pct ]);
 
 =cut
 
@@ -237,9 +248,9 @@ sub grep_by {
 
 
 
-=head2 group_by($method, @$args = [], $value_sub = count) : %key_value, %$key_value
+=head2 group_by($method, @$args = [], $value_sub = count) : %key_value | %$key_value
 
-Call ->$method(@$args) on each object in the array (just like map_by)
+Call ->$method(@$args) on each object in the array (just like ->map_by)
 and group the return values as keys in a hashref.
 
 The default $value_sub gives the count of each value as the values of
@@ -315,14 +326,14 @@ sub group_by {
     return wantarray ? %key_value : \%key_value;
 }
 
-=head3 The $value_sub []->gather_sub
+=head3 []->gather_sub
 
-This is a utility method to collect all the objects into an array and
-use those as hash values. Example:
+This is a utility method to collect all the objects into an array for
+the hash values. Example:
 
     my $genre_books = $books->group_by( "genre", undef, []->gather_sub );
     # keys: genre string
-    # values: arrayrefs with the Book objects in $books for each genre string
+    # values: arrayref with the Book objects in $books for each genre string
 
 Note: the undef is to avoid calling "genre" with any arguments.
 
@@ -368,7 +379,7 @@ objects which you want to do further method calls on. Example:
 
 Note: This is different from autobox::Core's ->flatten, which reurns a
 list rather than an array and therefore can't be used in this
-way. Yes, unfortunate.
+way.
 
 =cut
 

@@ -6,7 +6,6 @@ MANIFEST.SKIP
 META.yml
 Makefile.PL
 README
-README.md
 dist.ini
 lib/autobox/Array/Transform.pm
 t/author-pod-syntax.t
