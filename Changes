@@ -1,0 +1,11 @@
+
+Feature oriented Revision history for autobox-Array-Transform
+=============================================================
+
+1.000 -- 2016-02-21 22:53:41 UTC
+
+* First release
+  - map_by
+  - grep_by
+  - group_by
+  - flat
