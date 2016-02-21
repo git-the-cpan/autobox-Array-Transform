@@ -2,6 +2,11 @@
 Feature oriented Revision history for autobox-Array-Transform
 =============================================================
 
+1.002 -- 2016-02-21 23:17:48 UTC
+
+* Typo fix in link to autobox::Core
+
+
 1.001 -- 2016-02-21 23:15:17 UTC
 
 * Doc fixes

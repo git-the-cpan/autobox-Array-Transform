@@ -27,4 +27,4 @@ requires:
   warnings: 0
 resources:
   bugtracker: https://github.com/jplindstrom/p5-autobox-Array-Transform/issues
-version: 1.001
+version: 1.002

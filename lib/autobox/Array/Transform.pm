@@ -1,5 +1,5 @@
 package autobox::Array::Transform;
-$autobox::Array::Transform::VERSION = '1.001';
+$autobox::Array::Transform::VERSION = '1.002';
 use strict;
 use warnings;
 use parent qw/autobox/;
@@ -72,7 +72,7 @@ e.g. map_by(), grep_by(), group_by()
 
 =head2 Raison d'etre
 
-L<Autobox::Core> is awesome, for a variety of reasons.
+L<autobox::Core> is awesome, for a variety of reasons.
 
 =over 4
 
