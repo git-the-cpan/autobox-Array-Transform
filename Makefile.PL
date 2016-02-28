@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
     "autobox::Core" => 0,
     "lib" => 0
   },
-  "VERSION" => "1.002",
+  "VERSION" => "1.003",
   "test" => {
     "TESTS" => "t/*.t"
   }

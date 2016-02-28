@@ -1,5 +1,5 @@
 package autobox::Array::Transform;
-$autobox::Array::Transform::VERSION = '1.002';
+$autobox::Array::Transform::VERSION = '1.003';
 use strict;
 use warnings;
 use parent qw/autobox/;
@@ -7,6 +7,27 @@ use parent qw/autobox/;
 =head1 NAME
 
 autobox::Array::Transform - Autobox methods to transform Arrays
+
+=head1 DEPRECATION NOTICE!
+
+This module is deprecated, and you should use autobox::Transform
+instead.
+
+This module will be removed from CPAN and Github, so please switch
+over right away.
+
+Replace the "use autobox::Array::Transform" statements with "use
+autobox::Transform".
+
+Now everything should work the same with one exception:
+
+The new group_by default transformation is to put the object as the
+hash value, not the count.
+
+Where you rely on this, simply replace "group_by" with
+"group_by_count" and everything should work the same.
+
+
 
 =head1 SYNOPSIS
 

@@ -2,14 +2,23 @@
 Feature oriented Revision history for autobox-Array-Transform
 =============================================================
 
+1.003 -- 2016-02-28 22:28:52 UTC
+
+* This module is now deprecated and you should be using
+  autobox::Transform instead
+
+
+
 1.002 -- 2016-02-21 23:17:48 UTC
 
 * Typo fix in link to autobox::Core
 
 
+
 1.001 -- 2016-02-21 23:15:17 UTC
 
 * Doc fixes
+
 
 
 1.000 -- 2016-02-21 22:53:41 UTC
